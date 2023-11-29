@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Matkalaskut</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    
+        
+</head>
+<body>
+<div class=container>
+
+<h1>Matkalaskut</h1>
+
+
+<div class="col-md-4">
+		<i>Welcome <b sec:authentication="name"></b>, 
+        your role is <b sec:authentication="principal.authorities"></b>
+        </i>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>	
+    <table>
+		<tr>
+		    <th>Pvm</th>
+		    <th>Lähtöosoite</th>
+		    <th>Määränpää</th>
+		    <th>Ajetut_kilometrit</th>
+		    <th>Korvaus</th> 
+		    <th sec:authorize="hasAuthority('ADMIN')">Action</th> 
+		    
+		    
+		  
+		</tr>  
+    	<tr th:each = "lasku : ${laskut}">
+    	
+    	    <td th:text="${#temporals.format(lasku.pvm, 'dd.MM.yyyy')}"></td>
+			<td th:text="${lasku.lahtoOsoite}"></td>
+    		<td th:text="${lasku.maaranpaa}"></td>
+    		<td th:text="${lasku.kilometrit}"></td>
+			<td th:text="${lasku.korvaus}"></td>
+			
+			<td sec:authorize="hasAuthority('ADMIN')">
+				<a th:href="@{/edit/{id}(id=${lasku.id})}">Edit</a>
+            	<a th:href="@{/delete/{id}(id=${lasku.id})}">Delete</a>            	
+        	</td>
+            		
+    	</tr>
+    	
+    	
+    	
+    	
+     </table>    	
+          <a href="/add" class="btn btn-primary">Lisää matkalasku</a>
+</div>
+     
+</body>
+</html>

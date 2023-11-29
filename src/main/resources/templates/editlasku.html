@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Muokkaa Laskua</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+	
+	<div class=container>
+		<h1>Muokkaa Laskua</h1>
+		<form th:object="${lasku}" th:action="@{edit}" method="post">
+		<input type="hidden" th:field="*{id}" />
+		
+			<label for="pvm">Pvm</label>
+			<input type="date" id="pvm" th:field="*{pvm}" />
+			
+			<label for="lahtoOsoite">Lähtöosoite</label>
+			<input type="text" id="lahtoOsoite" th:field="*{lahtoOsoite}" />
+			
+			<label for="maaranpaa">Määränpää</label>
+			<input type="text" th:field="*{maaranpaa}" />
+			
+			<label for="kilometrit">Ajetut_kilometrit</label>
+			<input type="text" th:field="*{kilometrit}" />
+			
+			<input type="submit" value="Update"></input>
+				
+				<div style="clear: both; display: block; height: 10px;"></div>						
+		  	
+		</form>
+	</div>
+
+
+
+</body>
+</html>

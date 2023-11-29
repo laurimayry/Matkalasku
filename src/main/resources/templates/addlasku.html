@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lisää Matkalasku</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    
+</head>
+<body>
+
+<div class="container">
+
+	<h1>Lisää Matkalasku</h1>
+		<form class="form" th:object="${lasku}" th:action="@{save}" action="#" method="post">
+		
+			<label for="pvm">Pvm</label>
+				<input type="date" id="pvm" th:field="*{pvm}" />
+			
+			<label for="lahtoosoite">Lähtöosoite</label>
+				<input type="text" id="lahtoOsoite" th:field="*{lahtoOsoite}" />
+								
+			<label for="maaranpaa">määranpää</label>
+				<input type="text" th:field="*{maaranpaa}" />
+			
+			<label for="kilometrit">Ajetut_kilometrit</label>
+				<input type="text" th:field="*{kilometrit}" />
+				
+			
+				
+				<input type="submit" value="Save"></input>
+				<a th:href="@{/laskulistaus}"><button type="button">Back</button></a>
+				
+				
+				<div style="clear: both; display: block; height: 10px;"></div>						
+		  	
+    		
+		</form>
+	</div>
+	
+
+
+
+</body>
+</html>
